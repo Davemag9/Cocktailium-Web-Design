@@ -1,14 +1,23 @@
 import React from 'react'
-import { Header } from '../Header'
+
 import { Cocktail } from '../Cocktail'
 
-const cocktailId = "21345"
-
 export const CocktailPage = () => {
+  
+  const  cocktailId  = window.location.href;
+  let Id = "0";
+  for(let i = cocktailId.length; i >= 0; i--){
+    if(cocktailId[i] == '$'){
+      Id = cocktailId.substring(i + 1, cocktailId.length);
+      break;
+    }
+  }
+
+  console.log(Id)
+  
   return (
     <div>
-        {/* <Header/> */}
-        <Cocktail id = {cocktailId}/>
+        <Cocktail id = {Id}/>
     </div>
   )
 }

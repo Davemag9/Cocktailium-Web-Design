@@ -1,9 +1,11 @@
 import React from 'react'
 
-export const RandomButton = () => {
+export const RandomButton = (props) => {
+
+
   return (
     <div className="center-rand-butt">
-        <button className="rand-butt">Random cocktails!</button>
+        <button className="rand-butt" onClick={props.getRandom}>Random cocktails!</button>
     </div>
   )
 }

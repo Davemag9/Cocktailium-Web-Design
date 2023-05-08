@@ -1,0 +1,13 @@
+.nardi {
+    width: 30%;
+    margin-top: 30px;
+    margin-left: 35%;
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1000px) {
+    .nardi {
+        width: 60%;
+        margin-left: 20%;
+    }
+  }

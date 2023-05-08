@@ -1,6 +1,8 @@
 import React from 'react'
 import { Post } from './Post'
 
+import './Gallery.css'
+
 export const PhotoContainer = () => {
   return (
     <div className="all-content">

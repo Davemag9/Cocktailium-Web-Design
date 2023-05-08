@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './Gallery.css'
+
 export const Post = (props) => {
   return (
     <div className="post">

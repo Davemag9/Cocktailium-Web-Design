@@ -1,52 +1,68 @@
-import React, { useState }  from 'react'
-import { Header } from '../Header'
+import React, { useState, useEffect } from 'react'
+import axios from "axios";
+
 import { HeadText } from '../HeadText'
 import { CardContainer } from '../CardContainer'
 import { RandomButton } from '../RandomButton'
+import { Vedmegatko } from '../Vedmegatko';
+import { Loader } from '../Loader';
+import { NoCocktail } from '../NoCocktail';
 
 
 const text = "Don`t know what you want? There is some cocktails to try!"
 
 
 export const RandomPage = () => {
-    const [cocktails, setCocktails] = useState([
-        {
-            idDrink : "21345",
-            strDrink : "Whiskey Sour",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Shake with ice. Strain into chilled glass, garnish and serve. If served 'On the rocks', strain ingredients into old-fashioned glass filled with ice."
-        },
-        {
-            idDrink : "21346",
-            strDrink : "Dry Martini",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/6ck9yi1589574317.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Pour all ingredients into mixing glass with ice cubes. Strain in chilled martini cocktail glass. Squeeze oil from lemon peel onto the drink, or garnish with olive."
-        },
-        {
-            idDrink : "21347",
-            strDrink : "Daiquiri",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Pour all ingredients into shaker with ice cubes. Shake well. Strain in chilled cocktail glass. "
-        },
-        {
-            idDrink : "21348",
-            strDrink : "Margarita",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber. "
-        },
-    ]);
 
-  return (
-    <div>
-        {/* <Header/> */}
-        <HeadText text = {text}/>
-        <CardContainer cocktails = {cocktails}/>
-        <RandomButton/>
-    </div>
-  )
+    const [stillLoading, setLoading] = useState(true);
+    const [isClicked, setClick] = useState(false);
+
+    const [isOleh, setOleh] = useState(false);
+
+    const [cocktails, setCocktails] = useState([]);
+    const temporaryArray = [];
+
+    const handleClick = () => {
+        setClick(!isClicked);
+    }
+
+    async function getRandomCocktails() {
+
+        for (let i = 0; i < 4; i += 1) {
+
+            try {
+                const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/random.php`);
+
+                if (request.status === 200) temporaryArray.push(request.data.drinks[0]);
+
+            }
+            catch (error) {
+                setOleh(true);
+            }
+
+        }
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000);
+    }
+
+    useEffect(() => async () => {
+        setLoading(true);
+        await getRandomCocktails();
+
+        if (temporaryArray.length > 4) setCocktails([temporaryArray[4], temporaryArray[5], temporaryArray[6], temporaryArray[7],]);
+        else setCocktails(temporaryArray);
+
+    }, [isClicked]);
+
+
+    return (
+        <div>
+            <HeadText text={text} />
+            {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ? <CardContainer cocktails={cocktails} /> : <NoCocktail />) : <Vedmegatko />))}
+            <RandomButton getRandom={handleClick} />
+        </div>
+    )
+
 }
-

@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: black;
+}
+
+.header {
+  display: flex;
+}
+@media screen and (min-width: 0) and (max-width: 650px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+body, p {
+  margin: 0;
+  padding: 0;
+}
+
+.div-header {
+    background: #C6DCE4;
+    height: 50px;
+    width: 100%;
+    border-radius: 0 0 0 25px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    padding-right: 10px;
+  }
+  @media screen and (min-width: 0) and (max-width: 650px) {
+    .div-header {
+      display: flex;
+      flex-direction: column;
+      height: 200px;
+      border-radius: 0 0 25px 25px;
+      align-items: center;
+    }
+  }
+  
+  .button {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+  }
+  
+  .random {
+    min-width: 30px;
+    max-height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    margin-top: 10px;
+  }
+  
+  .button-1 {
+    margin-left: 3px;
+    margin-top: 18px;
+    font-size: 1.2rem;
+    font-family: "Josefin Sans", sans-serif;
+    outline: none;
+    text-decoration: none;
+  }
+  @media screen and (min-width: 650px) and (max-width: 900px) {
+    .button-1 {
+      font-size: 0.9rem;
+    }
+  }
+  
+  .home-button {
+    display: flex;
+    max-width: 200px;
+    min-width: 190px;
+  }
+  
+  .name {
+    position: relative;
+    margin-top: 25px;
+    margin-left: 60px;
+  }
+  .name p {
+    color: #fff;
+    font-size: 25px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  .name p:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(69, 69, 69);
+  }
+  .name p:nth-child(2) {
+    color: rgb(141, 9, 9);
+    animation: animate 4s ease-in-out infinite;
+  }
+  @keyframes animate {
+    0%, 100% {
+      -webkit-clip-path: polygon(0% 45%, 16% 44%, 33% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+              clip-path: polygon(0% 45%, 16% 44%, 33% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+    }
+    50% {
+      -webkit-clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+              clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+    }
+  }
+  
+  .name1111 {
+    position: relative;
+    margin-left: 0.5%;
+    margin-right: 1%;
+    margin-top: 10px;
+  }
+  
+  .logo {
+    margin-left: -3%;
+    height: 40px;
+    width: 55px;
+  }

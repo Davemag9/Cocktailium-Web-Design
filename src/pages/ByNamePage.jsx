@@ -1,50 +1,57 @@
-import React, { useState }  from 'react'
-import { Header } from '../Header'
+import React, { useState, useEffect } from 'react'
+import axios from "axios";
+
 import { HeadText } from '../HeadText'
 import { SearchBar } from '../SearchBar'
 import { CardContainer } from '../CardContainer'
+import { Vedmegatko } from '../Vedmegatko'
+import { Loader } from '../Loader'
+import { NoCocktail } from '../NoCocktail';
 
 
 const text = "Know what you want? Find it by name!"
 
 
 export const ByNamePage = () => {
-    const [cocktails, setCocktails] = useState([
-        {
-            idDrink : "21345",
-            strDrink : "Whiskey Sour",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Shake with ice. Strain into chilled glass, garnish and serve. If served 'On the rocks', strain ingredients into old-fashioned glass filled with ice."
-        },
-        {
-            idDrink : "21346",
-            strDrink : "Dry Martini",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/6ck9yi1589574317.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Pour all ingredients into mixing glass with ice cubes. Strain in chilled martini cocktail glass. Squeeze oil from lemon peel onto the drink, or garnish with olive."
-        },
-        {
-            idDrink : "21347",
-            strDrink : "Daiquiri",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Pour all ingredients into shaker with ice cubes. Shake well. Strain in chilled cocktail glass. "
-        },
-        {
-            idDrink : "21348",
-            strDrink : "Margarita",
-            strDrinkThumb : "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
-            strAlcoholic : "Alcoholic",
-            strInstructions : "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber. "
-        },
-    ]);
-  return (
-    <div>
-        {/* <Header/> */}
-        <HeadText text = {text}/>
-        <SearchBar/>
-        <CardContainer cocktails = {cocktails}/>
-    </div>
-  )
+
+    const [stillLoading, setLoading] = useState(true);
+    const [isOleh, setOleh] = useState(false);
+
+    const [searchText, setSearchText] = useState("margarita")
+    const [cocktails, setCocktails] = useState([]);
+
+    async function getCocktailByName() {
+
+        try {
+            const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`);
+
+            if (request.status === 200) setCocktails(request.data.drinks);
+        }
+        catch (error) {
+            setOleh(true);
+        }
+
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000);
+
+    }
+
+    const Anatoliy = async () => {
+        setLoading(true);
+        await getCocktailByName();
+    }
+
+    useEffect(() => {
+        Anatoliy();
+    }, [searchText]);
+
+
+    return (
+        <div>
+            <HeadText text={text} />
+            <SearchBar setText={setSearchText} />
+            {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ? <CardContainer cocktails={cocktails} /> : <NoCocktail />) : <Vedmegatko />))}
+        </div>
+    )
 }

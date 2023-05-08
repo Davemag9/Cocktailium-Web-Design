@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const OfferButton = () => {
   return (
-    <div>
+    <Link to="/main">
         <button className="submit">Offer</button>
-    </div>
+    </Link>
   )
 }

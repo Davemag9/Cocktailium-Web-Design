@@ -21,12 +21,9 @@ export const IngredientsContainer = (props) => {
                 "measure" : measure
                 }
             ]);
-            // console.log(ingredients.length);
         }
       },[props.data]
     );
-
-    //const arr = ingredients.slice(0, (ingredients.length + 1) / 2);
 
     return(
         <div className="box-ing">
