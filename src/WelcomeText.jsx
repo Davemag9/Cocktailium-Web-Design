@@ -4,7 +4,7 @@ export const WelcomeText = () => {
   return (
     <div className="main">
         <div className="main-info">
-            <p className="welcome">Welcome to Cocktilium!</p>
+            <p className="welcome">Welcome to Cocktailium!</p>
             <div className="welcome-div">
                 <p className="welcome-text">Welcome to our website, dedicated to providing you with an extensive collection of cocktail recipes. Whether you're a seasoned mixologist or a beginner looking to impress your guests, our site offers a wide variety of drinks to suit every taste and occasion.</p>
                 <p className="welcome-text">Our carefully curated collection of cocktail recipes features everything from classic cocktails like the Martini and Old Fashioned, to modern twists on favorites like the Cosmopolitan and Margarita. Our site also offers a variety of non-alcoholic cocktails for those who prefer to skip the booze.</p>

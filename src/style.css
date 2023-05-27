@@ -355,3 +355,20 @@ body, p {
     margin-left: 50px;
   }
 }
+
+.center-num-div{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black;
+  font-size: 120%;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.center-alc-butt {
+  margin-top: -30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}

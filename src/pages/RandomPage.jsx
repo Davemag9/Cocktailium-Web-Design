@@ -34,7 +34,6 @@ export const RandomPage = () => {
                 const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/random.php`);
 
                 if (request.status === 200) temporaryArray.push(request.data.drinks[0]);
-
             }
             catch (error) {
                 setOleh(true);
@@ -60,7 +59,7 @@ export const RandomPage = () => {
     return (
         <div>
             <HeadText text={text} />
-            {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ? <CardContainer cocktails={cocktails} /> : <NoCocktail />) : <Vedmegatko />))}
+            {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ? <CardContainer cocktails={cocktails} /> : <NoCocktail />) : <Vedmegatko/>))}
             <RandomButton getRandom={handleClick} />
         </div>
     )
