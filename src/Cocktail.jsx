@@ -20,16 +20,12 @@ export const Cocktail = (props) => {
 
     try {
       const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${props.id}`);
-
-      if (request.status === 200) setCocktails(request.data.drinks);
+      setCocktails(request.data.drinks);
     }
     catch (error) {
       setOleh(true);
     }
-
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
+    setLoading(false)
   }
 
   const Anatoliy = async () => {
@@ -42,7 +38,7 @@ export const Cocktail = (props) => {
   }, []);
 
   return (
-    <div>
+    <div data-testid = 'Cocktail'>
       {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ?
 
         <div className="cocktail-page">
@@ -59,9 +55,7 @@ export const Cocktail = (props) => {
             <VideoInstruction link={cocktails[0]['strVideo']} />
           </div>
         </div>
-
         : <NoCocktail />) : <Vedmegatko />))}
-
     </div>
 
   )

@@ -24,16 +24,12 @@ export const ByNamePage = () => {
 
         try {
             const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`);
-
-            if (request.status === 200) setCocktails(request.data.drinks);
+            setCocktails(request.data.drinks);
         }
         catch (error) {
             setOleh(true);
         }
-
-        setTimeout(() => {
-            setLoading(false)
-        }, 1000);
+        setLoading(false)
 
     }
 

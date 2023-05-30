@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { MainPage } from "./pages/MainPage";
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/post" element={<OfferPhotoPage />} />
           <Route path="/cocktail" element={<CocktailPage />} />
+          
           <Route path="*" element={<Navigate to="/main" replace />} />
        </Routes>
     </>

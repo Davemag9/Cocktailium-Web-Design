@@ -27,39 +27,40 @@ export const RandomPage = () => {
     }
 
     async function getRandomCocktails() {
-
         for (let i = 0; i < 4; i += 1) {
-
             try {
                 const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/random.php`);
-
-                if (request.status === 200) temporaryArray.push(request.data.drinks[0]);
+                temporaryArray.push(request.data.drinks[0]);
             }
             catch (error) {
                 setOleh(true);
             }
-
+        
         }
-
+        
         setTimeout(() => {
-            setLoading(false)
+            setLoading(false);
         }, 1000);
+        
     }
 
-    useEffect(() => async () => {
-        setLoading(true);
-        await getRandomCocktails();
-
-        if (temporaryArray.length > 4) setCocktails([temporaryArray[4], temporaryArray[5], temporaryArray[6], temporaryArray[7],]);
-        else setCocktails(temporaryArray);
-
+    useEffect(()=> {
+        const otdaiSalo = async () => {
+            setLoading(true);
+            await getRandomCocktails();
+    
+            if (temporaryArray.length > 4) setCocktails([temporaryArray[4], temporaryArray[5], temporaryArray[6], temporaryArray[7]]);
+            else setCocktails(temporaryArray);
+        };
+        otdaiSalo();
     }, [isClicked]);
+
 
 
     return (
         <div>
             <HeadText text={text} />
-            {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ? <CardContainer cocktails={cocktails} /> : <NoCocktail />) : <Vedmegatko/>))}
+            {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ? <CardContainer cocktails={cocktails} /> : <NoCocktail/>) : <Vedmegatko />))}
             <RandomButton getRandom={handleClick} />
         </div>
     )

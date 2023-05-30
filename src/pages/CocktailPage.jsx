@@ -1,9 +1,7 @@
 import React from 'react'
-
 import { Cocktail } from '../Cocktail'
 
 export const CocktailPage = () => {
-  
   const  cocktailId  = window.location.href;
   let Id = "0";
   for(let i = cocktailId.length; i >= 0; i--){
@@ -12,12 +10,10 @@ export const CocktailPage = () => {
       break;
     }
   }
-
-  console.log(Id)
   
   return (
-    <div>
-        <Cocktail id = {Id}/>
+    <div data-testid = 'CocktailPage'>
+        <Cocktail data-testid = 'Cocktail1' id = {Id}/>
     </div>
   )
 }

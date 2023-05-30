@@ -6,7 +6,6 @@ import { SelectLetter } from '../SelectLetter'
 import { CardContainer } from '../CardContainer'
 import { Vedmegatko } from '../Vedmegatko';
 import { Loader } from '../Loader';
-import { NoCocktail } from '../NoCocktail';
 
 
 const text = "Looking for cocktail? Try to find it by latter!"
@@ -24,16 +23,12 @@ export const ByLetterPage = () => {
 
     try {
       const request = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${currentLetter}`);
-
-      if (request.status === 200) setCocktails(request.data.drinks);
+      setCocktails(request.data.drinks);
     }
     catch (error) {
       setOleh(true);
     }
-
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
+    setLoading(false)
   }
 
   const Anatoliy = async () => {
@@ -49,7 +44,7 @@ export const ByLetterPage = () => {
     <div>
       <HeadText text={text} />
       <SelectLetter setLetter={setCurrentLetter} />
-      {stillLoading ? <Loader /> : ((!isOleh ? (cocktails ? <CardContainer cocktails={cocktails} /> : <NoCocktail />) : <Vedmegatko />))}
+      {stillLoading ? <Loader /> : (!isOleh ? (<CardContainer cocktails={cocktails}/>) : <Vedmegatko />)}
     </div>
   )
 }

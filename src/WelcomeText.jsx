@@ -2,7 +2,7 @@ import React from 'react'
 
 export const WelcomeText = () => {
   return (
-    <div className="main">
+    <div data-testid = "WelcomeText" className="main">
         <div className="main-info">
             <p className="welcome">Welcome to Cocktailium!</p>
             <div className="welcome-div">

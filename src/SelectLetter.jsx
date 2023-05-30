@@ -9,8 +9,8 @@ export const SelectLetter = (props) => {
   }
 
   return (
-    <div>
-        <select className="list" onChange={handleChange}>
+    <div >
+        <select data-testid = 'SelectLetter' className="list" onChange={handleChange}>
           {options.map((option) => (
             <option value={option}>{option}</option>
           ))}
