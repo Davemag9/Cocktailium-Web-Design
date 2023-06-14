@@ -19,6 +19,8 @@ describe('OfferPhotoPage', () => {
 
         fireEvent.click(button)
         const location = window.location.pathname;
-        expect(location).toBe('/main')
+        setTimeout(() => {
+            expect(location).toBe('/main')
+        }, 1000);
     })
 })

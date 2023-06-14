@@ -8,7 +8,7 @@ export const OfferPhotoPage = () => {
   return (
     <div>
         <OfferForm/>
-        <OfferButton/>
+        {/* <OfferButton/> */}
         <OfferPhotoInstructions/>
     </div>
   )
